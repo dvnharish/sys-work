@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #374151;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            line-height: 1.6;
+        }
+
+        .invite_container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 420px;
+            padding: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .invite_container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .invite_logo_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .invite_logo {
+            width: 200px;
+            height: auto;
+        }
+
+        .invite_title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .invite_form_group {
+            margin-bottom: 20px;
+        }
+
+        .invite_label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Enhanced Input Styling */
+        .invite_input {
+            width: 100%;
+            padding: 14px 16px; /* Increased padding for better spacing */
+            font-size: 16px;
+            font-weight: 400;
+            color: #1f2937; /* Darker text for better contrast */
+            background-color: #f9fafb; /* Light background for input fields */
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .invite_input:focus {
+            border-color: #3b82f6; /* Blue border on focus */
+            background-color: #ffffff; /* White background on focus */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Subtle glow effect */
+        }
+
+        .invite_input:hover {
+            background-color: #ffffff; /* Slight hover effect */
+        }
+
+        .invite_input::placeholder {
+            color: #9ca3af; /* Light gray placeholder text */
+            opacity: 1;
+        }
+
+
+        .invite_button_container {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .invite_button {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .invite_button:hover {
+            background-color: #2563eb;
+            transform: scale(1.02);
+        }
+
+        .invite_button:active {
+            transform: scale(0.98);
+        }
+
+        .invite_hidden {
+            display: none;
+        }
+
+        /* Invoice Section Styling */
+        .invite_invoice_section {
+            margin-top: 24px;
+        }
+
+        .invite_submit_button {
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invite_container" id="inviteContainer">
+        <!-- Logo Section -->
+        <div class="invite_logo_container">
+            <!-- Avvance Logo -->
+            <img src="https://www.avvance.com/etc.clientlibs/ecm-global/clientlibs/clientlib-site/resources/images/svg/logo_avvance.svg" alt="Avvance Logo" class="invite_logo">
+        </div>
+
+        <h2 class="invite_title" id="inviteTitle">Customer Information</h2>
+
+        <div class="invite_form_group" id="inviteFirstNameGroup">
+            <label for="inviteFirstName" class="invite_label">First Name</label>
+            <input type="text" id="inviteFirstName" class="invite_input" placeholder="Enter your first name">
+        </div>
+
+        <div class="invite_form_group" id="inviteLastNameGroup">
+            <label for="inviteLastName" class="invite_label">Last Name</label>
+            <input type="text" id="inviteLastName" class="invite_input" placeholder="Enter your last name">
+        </div>
+
+        <div class="invite_form_group" id="inviteEmailGroup">
+            <label for="inviteEmail" class="invite_label">Email Address</label>
+            <input type="email" id="inviteEmail" class="invite_input" placeholder="Enter your email address">
+        </div>
+
+        <div class="invite_form_group" id="invitePhoneGroup">
+            <label for="invitePhone" class="invite_label">Phone Number</label>
+            <input type="tel" id="invitePhone" class="invite_input" placeholder="Enter your phone number">
+        </div>
+
+        <!-- Buttons Side by Side -->
+        <div class="invite_button_container">
+            <button id="invitePreApprovalBtn" class="invite_button">Check for Pre Approval</button>
+            <button id="inviteSendInvoiceBtn" class="invite_button">Send Invoice</button>
+        </div>
+
+        <!-- Invoice Section -->
+        <div id="inviteInvoiceSection" class="invite_invoice_section invite_hidden">
+            <div class="invite_form_group" id="inviteInvoiceAmountGroup">
+                <label for="inviteInvoiceAmount" class="invite_label">Invoice Amount</label>
+                <input type="number" id="inviteInvoiceAmount" class="invite_input" placeholder="Enter invoice amount">
+            </div>
+            <button id="inviteSubmitBtn" class="invite_button invite_submit_button">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const sendInvoiceBtn = document.getElementById('inviteSendInvoiceBtn');
+        const invoiceSection = document.getElementById('inviteInvoiceSection');
+        const submitBtn = document.getElementById('inviteSubmitBtn');
+
+        // Show invoice section when "Send Invoice" button is clicked
+        sendInvoiceBtn.addEventListener('click', () => {
+            invoiceSection.classList.remove('invite_hidden');
+        });
+
+        // Handle form submission
+        submitBtn.addEventListener('click', () => {
+            const firstName = document.getElementById('inviteFirstName').value.trim();
+            const lastName = document.getElementById('inviteLastName').value.trim();
+            const email = document.getElementById('inviteEmail').value.trim();
+            const phone = document.getElementById('invitePhone').value.trim();
+            const invoiceAmount = document.getElementById('inviteInvoiceAmount').value.trim();
+
+            if (firstName && lastName && email && phone && invoiceAmount) {
+                alert(`First Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nPhone: ${phone}\nInvoice Amount: $${invoiceAmount}`);
+            } else {
+                alert('Please fill out all fields.');
+            }
+        });
+    </script>
+</body>
+</html>
